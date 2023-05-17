@@ -4,8 +4,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ef43d5d9b7c74ec0b211c03d91c448d8)](https://app.codacy.com/gh/michaeldorner/information-diffusion-boundaries-in-code-review/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7898863.svg)](https://doi.org/10.5281/zenodo.7898863)
 
-[![laksdjaskldjalksjd](https://github.com/github/docs/actions/workflows/test.yml/badge.svg?branch=badges&event=push)]
-[![.github/workflows/test.yaml](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/test.yaml/badge.svg?branch=badges&event=push)](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/test.yaml)
+[![Tests](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/test.yaml/badge.svg?branch=badges&event=push)](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/test.yaml)
 
 
 
