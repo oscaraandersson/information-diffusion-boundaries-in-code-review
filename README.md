@@ -3,7 +3,9 @@
 [![GitHub](https://img.shields.io/github/license/michaeldorner/information-diffusion-boundaries-in-code-review)](./LICENSE)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ef43d5d9b7c74ec0b211c03d91c448d8)](https://app.codacy.com/gh/michaeldorner/information-diffusion-boundaries-in-code-review/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7898863.svg)](https://doi.org/10.5281/zenodo.7898863)
-![Tests](https://github.com/github/docs/actions/workflows/test.yml/badge.svg?)
+
+![example branch parameter](https://github.com/github/docs/actions/workflows/test.yml/badge.svg?branch=badges)
+
 
 
 test test
