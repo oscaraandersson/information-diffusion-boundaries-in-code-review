@@ -1,4 +1,7 @@
 # Byte-compiled / optimized / DLL files
+
+exploratory_testing.ipynb
+
 __pycache__/
 *.py[cod]
 *$py.class
