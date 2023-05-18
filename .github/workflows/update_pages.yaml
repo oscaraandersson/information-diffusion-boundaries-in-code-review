@@ -1,0 +1,37 @@
+name: Update Documentation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: read-all|write-all
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: |
+          # Install Sphinx (or any other dependencies needed for building the docs)
+          pip install sphinx
+          pip install sphinx-rtd-theme
+
+      - name: Update Documentation
+        run: |
+          # Generate the API documentation using sphinx-apidoc
+          sphinx-apidoc -o . docs/
+
+      - name: Commit changes
+        run: |
+          git pull origin main
+          git add .
+          git commit -m "Update documentation"
+          git push origin gh-pages
+
