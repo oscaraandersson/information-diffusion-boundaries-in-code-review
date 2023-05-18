@@ -23,7 +23,7 @@ jobs:
       - name: Update Documentation
         run: |
           # Generate the API documentation using sphinx-apidoc
-          sphinx-apidoc -o . docs/
+          sphinx-apidoc . -o docs/
 
       - name: Commit changes
         run: |
