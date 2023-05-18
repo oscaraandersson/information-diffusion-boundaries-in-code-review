@@ -1,6 +1,8 @@
-name: Simulation
+name: Tests
 
 on: [push, workflow_dispatch]
+  branches:
+    - main
 
 jobs:
   build:
@@ -13,14 +15,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      with:
-        ref: badges
+        with:
+          ref: badges
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       # You can test your matrix by printing the current Python version
-      - name: Run Unittests
+      - name: Run Unittests-json
+        run: |
+          python3 -m unittest
+      - name: Run Unittests-orjson
         run: |
           pip install -r requirements.txt
           python3 -m unittest
+          
