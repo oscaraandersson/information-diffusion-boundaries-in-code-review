@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          ref: gh-pages
 
       - name: Install dependencies
         run: |
@@ -29,6 +27,7 @@ jobs:
 
       - name: Commit changes
         run: |
+          git checkout gh-pages
           git pull origin main --rebase
           git add .
           git commit -m "Update documentation"
