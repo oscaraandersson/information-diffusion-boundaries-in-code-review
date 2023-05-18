@@ -27,6 +27,8 @@ jobs:
 
       - name: Commit changes
         run: |
+          git config --global user.name "Oscar Andersson"
+          git config --global user.email "oscar.966484@gmail.com"
           git add .
           git commit -m "Update documentation"
           git push origin main
