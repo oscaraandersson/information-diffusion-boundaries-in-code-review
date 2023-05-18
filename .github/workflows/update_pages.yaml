@@ -2,6 +2,8 @@ name: Update Documentation
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -12,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@main
       - name: Use gh-pages branch
-        uses: actions/checkout@gh-actions
+        uses: actions/checkout@gh-pages
 
       - name: Install dependencies
         run: |
