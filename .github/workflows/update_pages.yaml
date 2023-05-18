@@ -27,6 +27,7 @@ jobs:
 
       - name: Commit changes
         run: |
+          git branch
           git checkout gh-pages
           git pull origin main --rebase
           git add .
