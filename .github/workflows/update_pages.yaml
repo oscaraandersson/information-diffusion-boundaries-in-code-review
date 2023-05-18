@@ -27,6 +27,7 @@ jobs:
 
       - name: Commit changes
         run: |
+          set -e
           git config --global user.name "Oscar Andersson"
           git config --global user.email "oscar.966484@gmail.com"
           git add .
