@@ -1,9 +1,12 @@
 name: Tests
 
-on: [push, workflow_dispatch]
-  branches:
-    - main
-
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - main
+      - badges
+      
 jobs:
   build:
 
