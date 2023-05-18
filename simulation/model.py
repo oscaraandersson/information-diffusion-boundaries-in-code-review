@@ -27,7 +27,9 @@ class TimeVaryingHypergraph:
     def timings(self, entity=None):
         if entity is None:
             return self._timings
-        return self._timings[entity]
+        if entity in self._timings:
+            return self._timings[entity]
+        raise EntityNotFound(f'Unknown timing {entity}')
 
     def vertices(self, hedge=None):
         if hedge is None:
@@ -70,7 +72,7 @@ class CommunicationNetwork(TimeVaryingHypergraph):
         for chan_id, channel in raw_data.items():
             if len(channel['participants']) == 0:
                 sys.exit(f"Line: {line}, Chan_id: {chan_id}. Participants column empty.")
-                
+
             hedges[str(chan_id)] = set(channel['participants'])
 
             try:
