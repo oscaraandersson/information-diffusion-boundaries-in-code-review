@@ -17,7 +17,7 @@ class TimeVaryingHypergraphTest(unittest.TestCase):
 
         with self.assertRaises(Exception) as context:
             self.cn.timings("x1")
-        self.assertTrue("Unknown timing x1" in str(context.exception))
+        self.assertTrue("No hyperedge matches the timing x1" in str(context.exception))
 
     # Testing if the vertices function works as expected when given no input, given correct input as well as incorrect input
     def test_vertices(self):

@@ -29,7 +29,7 @@ class TimeVaryingHypergraph:
             return self._timings
         if entity in self._timings:
             return self._timings[entity]
-        raise EntityNotFound(f'Unknown timing {entity}')
+        raise EntityNotFound(f'No hyperedge matches the timing {entity}')
 
     def vertices(self, hedge=None):
         if hedge is None:
