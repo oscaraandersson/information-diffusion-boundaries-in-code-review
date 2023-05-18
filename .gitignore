@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 
 exploratory_testing.ipynb
+htmlcov
 
 __pycache__/
 *.py[cod]
