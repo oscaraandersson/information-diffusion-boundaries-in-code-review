@@ -1,8 +1,9 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from datetime import datetime
 import bz2
 from pathlib import Path
+from datetime import datetime
+import json
 from simulation.model import CommunicationNetwork, TimeVaryingHypergraph
 
 # class CommunicationNetworkTest(unittest.TestCase):
@@ -49,51 +50,6 @@ class TimeVaryingHypergraphTest(unittest.TestCase):
         self.assertTrue("Unknown vertex x1" in str(context.exception))
 
 
-# class ModelDataTest(unittest.TestCase):
-#     def test_model_with_data(self):
-#         dummy_json = """{"00":{"end":"2020-02-05T12:49:39","participants":[0,1]},
-#           "01":{"end":"2020-02-05T12:49:49","participants":[2,3]},
-#           "02":{"end":"2020-02-05T12:49:59","participants":[4,5]},
-#           "03":{"end":"2020-02-05T12:49:19","participants":[6]},
-#           "04":{"end":"2020-02-05T12:49:29","participants":[7,8,9]},
-#           "05":{"end":"2020-02-05T12:59:39","participants":[1,4]},
-#           "06":{"end":"2020-02-05T12:59:30","participants":[2,7]},
-#           "07":{"end":"2020-02-05T12:59:39","participants":[5,2]},
-#           "08":{"end":"2020-02-05T12:49:31","participants":[3]},
-#           "09":{"end":"2020-02-05T12:49:32","participants":[8,11]},
-#           "10":{"end":"2020-02-05T12:49:33","participants":[0,9]},
-#           "11":{"end":"2020-02-05T12:49:34","participants":[5,6]},
-#           "12":{"end":"2020-02-05T12:49:35","participants":[9,8]}}"""
-
-#         fake_file_path = "file/path/mock"
-
-#         with patch("builtins.open", new=mock_open(read_data=dummy_json)) as _file:
-#             com_network = CommunicationNetwork.from_json(dummy_json)
-#             _file.assert_called_once_with(fake_file_path, "r")
-
-#         self.assertEqual(len(com_network.participants()), 37103)
-#         self.assertEqual(len(com_network.channels()), 309740)
-
-#         self.assertEqual(len(com_network.vertices()), 37103)
-#         self.assertEqual(len(com_network.hyperedges()), 309740)
-
-# mock_data = {
-#     "00": {"end": "2020-02-05T12:49:39", "participants": [0, 1]},
-#     "01": {"end": "2020-02-05T12:49:49", "participants": [2, 3]},
-#     "02": {"end": "2020-02-05T12:49:59", "participants": [4, 5]},
-#     "03": {"end": "2020-02-05T12:49:19", "participants": [6]},
-#     "04": {"end": "2020-02-05T12:49:29", "participants": [7, 8, 9]},
-#     "05": {"end": "2020-02-05T12:59:39", "participants": [1, 4]},
-#     "06": {"end": "2020-02-05T12:59:30", "participants": [2, 7]},
-#     "07": {"end": "2020-02-05T12:59:39", "participants": [5, 2]},
-#     "08": {"end": "2020-02-05T12:49:31", "participants": [3]},
-#     "09": {"end": "2020-02-05T12:49:32", "participants": [8, 11]},
-#     "10": {"end": "2020-02-05T12:49:33", "participants": [0, 9]},
-#     "11": {"end": "2020-02-05T12:49:34", "participants": [5, 6]},
-#     "12": {"end": "2020-02-05T12:49:35", "participants": [9, 8]},
-# }
-
-
 class CommunicationNetworkTest(unittest.TestCase):
     def test_from_json(self):
         # Mock the file reading and decompression
@@ -102,11 +58,37 @@ class CommunicationNetworkTest(unittest.TestCase):
         mock_file_path.suffix = ".bz2"
         mock_file_path.open.return_value.__enter__.return_value = mock_file
         mock_file.read.return_value = bz2.compress(
-            b'{"channel1": {"participants": [1, 2, 3], "end": "2023-05-18T12:00:00"}}'
+            b"""{
+                "00": {"end": "2020-02-05T12:49:39", "participants": [0, 1]},
+                "01": {"end": "2020-02-05T12:49:49", "participants": [2, 3]},
+                "02": {"end": "2020-02-05T12:49:59", "participants": [4, 5]},
+                "03": {"end": "2020-02-05T12:49:19", "participants": [6]},
+                "04": {"end": "2020-02-05T12:49:29", "participants": [7, 8, 9]},
+                "05": {"end": "2020-02-05T12:59:39", "participants": [1, 4]},
+                "06": {"end": "2020-02-05T12:59:30", "participants": [2, 7]},
+                "07": {"end": "2020-02-05T12:59:39", "participants": [5, 2]},
+                "08": {"end": "2020-02-05T12:49:31", "participants": [3]},
+                "09": {"end": "2020-02-05T12:49:32", "participants": [8, 11]},
+                "10": {"end": "2020-02-05T12:49:33", "participants": [0, 9]},
+                "11": {"end": "2020-02-05T12:49:34", "participants": [5, 6]},
+                "12": {"end": "2020-02-05T12:49:35", "participants": [9, 8]},
+            }"""
         )
         mock_data = {
-            "channel1": {"participants": [1, 2, 3], "end": "2023-05-18T12:00:00"}
-        }
+                    "00": {"end": "2020-02-05T12:49:39", "participants": [0, 1]},
+                    "01": {"end": "2020-02-05T12:49:49", "participants": [2, 3]},
+                    "02": {"end": "2020-02-05T12:49:59", "participants": [4, 5]},
+                    "03": {"end": "2020-02-05T12:49:19", "participants": [6]},
+                    "04": {"end": "2020-02-05T12:49:29", "participants": [7, 8, 9]},
+                    "05": {"end": "2020-02-05T12:59:39", "participants": [1, 4]},
+                    "06": {"end": "2020-02-05T12:59:30", "participants": [2, 7]},
+                    "07": {"end": "2020-02-05T12:59:39", "participants": [5, 2]},
+                    "08": {"end": "2020-02-05T12:49:31", "participants": [3]},
+                    "09": {"end": "2020-02-05T12:49:32", "participants": [8, 11]},
+                    "10": {"end": "2020-02-05T12:49:33", "participants": [0, 9]},
+                    "11": {"end": "2020-02-05T12:49:34", "participants": [5, 6]},
+                    "12": {"end": "2020-02-05T12:49:35", "participants": [9, 8]},
+                }
         mock_json_loads = MagicMock(return_value=mock_data)
 
         # Patch the required functions and objects with the mocks
@@ -136,3 +118,47 @@ class CommunicationNetworkTest(unittest.TestCase):
             mock_file.read.assert_called_once_with()
 
             # Additional assertions or tests can be performed as needed
+
+class Test:
+    cls = {"00": {"end": "2020-02-05T12:49:39", "participants": [0, 1]}}
+
+    @classmethod
+    # should fail
+    def read_data_1(cls):
+        raw_data = json.loads(cls)
+        print(raw_data)
+
+    @classmethod
+    # should pass
+    def read_data_2(cls):
+        raw_data = json.loads(cls)
+        assert isinstance(raw_data['participants'], int)
+        print(raw_data)
+
+    @classmethod
+    # should pass
+    def read_data_3(cls):
+        raw_data = json.loads(cls)
+        try:
+            datetime.fromisoformat("2020-02-05T12:49:39")
+            assert isinstance(raw_data['end'], datetime)
+        except ValueError:
+            0
+        
+class TestReadData(unittest.TestCase):
+    base_test = """{"test":0}"""
+    def test_read_data_1(self):
+        with patch('json.loads', return_value={'test':1.0}) as _:
+            with self.assertRaises(Exception):
+                Test.read_data_1()
+
+    def test_read_data_2(self):
+        with patch('json.loads', return_value={'test':1.0}) as _:
+            with self.assertRaises(Exception):
+                Test.read_data_2()
+
+    def test_read_data_2(self):
+        with patch('json.loads', return_value={'test':1.0}) as _:
+            with self.assertRaises(Exception):
+                Test.read_data_3()
+
