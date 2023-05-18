@@ -66,4 +66,5 @@ class CommunicationNetwork(TimeVaryingHypergraph):
             hedges = {str(chan_id): set(channel['participants']) for chan_id, channel in raw_data.items()}
             timings = {str(chan_id): datetime.fromisoformat(channel['end']) for chan_id, channel in raw_data.items()}
 
+
         return cls(hedges, timings, name=name)
