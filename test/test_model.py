@@ -118,7 +118,7 @@ class CommunicationNetworkTest(unittest.TestCase):
                     "2": {"end": "2020-02-05T12:49:39", "participants": [2, 3]},
                     "3": {"end": "2020-02-05T12:49:39", "participants": ["2"]},
                     "4": {"end": "2020-02-05T12:49:59", "participants": []},
-                    "5.3": {"end": "2020-02-05T12:49:59", "participants": [3, 7]}
+                    "5.3": {"end": "hejsan", "participants": [3, 7]}
                 }"""
         )
 
@@ -133,21 +133,8 @@ class CommunicationNetworkTest(unittest.TestCase):
             mock_file_path.open.return_value.__enter__.return_value = mock_file
 
             # Create an object with a call to the method to be tested to make sure the mock is read
-            result = CommunicationNetwork.from_json(mock_file_path)
+            assertSystemExit(CommunicationNetwork.from_json(mock_file_path))
 
-            # Assert that the object was created with the default name
-            self.assertEqual(result.name, None)
-
-            # Assert that the inherited functions work as expected
-            self.assertEqual(result.channels(), {"1", "3", "5.3", "4", "2"})
-
-            # Assert that the inherited functions work as expected
-            self.assertEqual(result.participants(), {0.1, 2, 3, "2", 7})
-            self.assertEqual(result.participants("4"), set())
-
-            # Assert the expected function calls were made
-            mock_file_path.open.assert_called_once_with("rb")
-            mock_file.read.assert_called_once_with()
 
 
 # class Test:
