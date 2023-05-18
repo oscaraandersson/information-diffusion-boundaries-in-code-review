@@ -1,0 +1,4 @@
+Creating documentation with sphinx
+
+To update the documentation: run
+>> sphinx-py
