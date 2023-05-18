@@ -1,41 +1,20 @@
-on: [push]
+name: Coverage
+
+on:
+  workflow_call
 
 jobs:
+
   coverage:
+    uses: ./.github/workflows/coverage.yaml
+  build:
+
     runs-on: ubuntu-latest
-    name: Generate test coverage badge
     steps:
-
-    - name: Generate a coverage value
-      id: coverage
-      # Generates a GitHub Workflow output named `lines`
-      run: |
-        COVERAGE="$( parse-coverage-report )"
-        echo "##[set-output name=lines;]${COVERAGE}%"
-
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
-
-    - name: Create badges dir if necessary
-      run: mkdir -p .github/badges
-
-    - name: Generate the badge SVG image
-      uses: emibcn/badge-action@v1
-      with:
-        label: 'Test coverage'
-        status: ${{ steps.coverage.outputs.lines }}
-        color: 'blue,555,daf'
-        path: .github/badges/coverage.svg
-    - name: Commit badge
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .github/badges/coverage.svg
-        git commit -m "Add/Update coverage badge"
-    - name: Push badge commit
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ steps.extract_branch.outputs.branch }}
+      - uses: actions/checkout@v3
+        with:
+          ref: badges
+      - name: test_echo
+        run: |
+          echo "testing"
+          

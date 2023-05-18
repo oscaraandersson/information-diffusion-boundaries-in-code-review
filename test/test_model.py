@@ -14,9 +14,9 @@ class ModelTest(unittest.TestCase):
     def test_hyperedges(self):
         self.assertEqual(len(ModelTest.cn.hyperedges()), 3)
         self.assertEqual(ModelTest.cn.hyperedges('v1'), {'h1'})
-        
-    def test_failing(self):
-        self.assertEqual(1, 2)
+
+    # def test_failing(self):
+    #     self.assertEqual(1, 2)
 
 
 class ModelDataTest(unittest.TestCase):

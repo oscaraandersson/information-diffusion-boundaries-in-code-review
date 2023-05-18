@@ -8,6 +8,8 @@ on:
       - badges
       
 jobs:
+  coverage:
+    uses: ./.github/workflows/coverage.yaml
   build:
 
     runs-on: ${{ matrix.os }}
