@@ -8,6 +8,7 @@
 
 [![Coverage](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/coverage.yaml/badge.svg?branch=badges)](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/coverage.yaml)
 
+[![.github/workflows/coverage.yaml](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/coverage.yaml/badge.svg?branch=badges)](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/coverage.yaml)
 
 Simulation code for the study "Upper Bound of Information Diffusion in Code Review"
 
