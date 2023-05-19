@@ -80,10 +80,10 @@ class CommunicationNetworkTest(unittest.TestCase):
             self.assertEqual(result.name, None)
 
             # Assert that the inherited functions work as expected
-            self.assertSetEqual(result.channels(), {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09","10", "11", "12"})
-            self.assertSetEqual(result.channels(0), {"00", "10"})
-            self.assertSetEqual(result.channels(5), {"02", "07", "11"})
-            self.assertSetEqual(result.channels(9), {"04", "10", "12"})
+            self.assertSetEqual(result.channels(), {'00', '01', '02', '03', '04', '05', '06', '07', '08', '09','10', '11', '12'})
+            self.assertSetEqual(result.channels(0), {'00', '10'})
+            self.assertSetEqual(result.channels(5), {'02', '07', '11'})
+            self.assertSetEqual(result.channels(9), {'04', '10', '12'})
 
             # Assert that the inherited functions work as expected
             self.assertSetEqual(result.participants(), {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11})
@@ -134,10 +134,10 @@ class CommunicationNetworkTest(unittest.TestCase):
             self.assertEqual(result.name, None)
 
             # Assert that the inherited functions work as expected
-            self.assertSetEqual(result.channels(), {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09","10", "11", "12"})
-            self.assertSetEqual(result.channels(0), {"00", "10"})
-            self.assertSetEqual(result.channels(5), {"02", "07", "11"})
-            self.assertSetEqual(result.channels(9), {"04", "10", "12"})
+            self.assertSetEqual(result.channels(), {'00', '01', '02', '03', '04', '05', '06', '07', '08', '09','10', '11', '12'})
+            self.assertSetEqual(result.channels(0), {'00', '10'})
+            self.assertSetEqual(result.channels(5), {'02', '07', '11'})
+            self.assertSetEqual(result.channels(9), {'04', '10', '12'})
 
             # Assert that the inherited functions work as expected
             self.assertSetEqual(result.participants(), {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11})
