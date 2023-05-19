@@ -1,7 +1,10 @@
 name: Coverage
 
+
 on:
-  workflow_call
+  push:
+    branches:    
+      - badges
 
 jobs:
   build:

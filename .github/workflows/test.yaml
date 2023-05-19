@@ -4,12 +4,9 @@ on:
   push:
     # Sequence of patterns matched against refs/heads
     branches:    
-      - main
       - badges
       
 jobs:
-  coverage:
-    uses: ./.github/workflows/coverage.yaml
   build:
 
     runs-on: ${{ matrix.os }}
