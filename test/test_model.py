@@ -10,35 +10,50 @@ class TimeVaryingHypergraphTest(unittest.TestCase):
         {"h1": 1, "h2": 2, "h3": 3},
     )
 
-    # Testing if the timings function works as expected when given no input, given correct input as well as incorrect input
-    def test_timings(self):
+    # Testing if the timings function works as expected when given no input
+    def test_timings_no_parameter(self):
         self.assertEqual(len(self.cn.timings()), 3)
+
+    # Testing if the timings function works as expected when given correct input
+    def test_timings_correct_parameter(self):
         self.assertEqual(self.cn.timings("h1"), 1)
 
+    # Testing if the timings function works as expected when given incorrect input
+    def test_timings_incorrect_paramter(self):
         with self.assertRaises(Exception) as context:
             self.cn.timings("x1")
         self.assertTrue("No hyperedge matches the timing x1" in str(context.exception))
 
-    # Testing if the vertices function works as expected when given no input, given correct input as well as incorrect input
-    def test_vertices(self):
+    # Testing if the vertices function works as expected when given no input
+    def test_vertices_no_parameter(self):
         self.assertEqual(len(self.cn.vertices()), 4)
+
+    # Testing if the vertices function works as expected when given correct input
+    def test_vertices_correct_parameter(self):
         self.assertEqual(self.cn.vertices("h1"), {"v1", "v2"})
 
+    # Testing if the vertices function works as expected when given incorrect input
+    def test_vertices_incorrect_parameter(self):
         with self.assertRaises(Exception) as context:
             self.cn.vertices("x1")
         self.assertTrue("Unknown hyperedge x1" in str(context.exception))
 
-    # Testing if the hyperedges function works as expected when given no input, given correct input as well as incorrect input
-    def test_hyperedges(self):
+    # Testing if the hyperedges function works as expected when given no input
+    def test_hyperedges_no_parameter(self):
         self.assertEqual(len(self.cn.hyperedges()), 3)
+
+    # Testing if the hyperedges function works as expected when given correct input
+    def test_hyperedges_correct_parameter(self):
         self.assertEqual(self.cn.hyperedges("v1"), {"h1"})
 
+    # Testing if the hyperedges function works as expected when given incorrect input
+    def test_hyperedges_incorrect_parameter(self):
         with self.assertRaises(Exception) as context:
             self.cn.hyperedges("x1")
         self.assertTrue("Unknown vertex x1" in str(context.exception))
 
-
 class CommunicationNetworkTest(unittest.TestCase):
+    # Testing if the from_json function works as expected when the list for participants is empty
     def test_from_json_empty_participants(self):
         # Mock the file reading and decompression
         mock_file = MagicMock()
@@ -58,7 +73,7 @@ class CommunicationNetworkTest(unittest.TestCase):
         with patch("builtins.open", return_value=mock_file), patch(
             "json.loads"
         ), patch("simulation.model.Path", spec=Path) as mock_path:
-            
+
             # Set up the mock Path object
             mock_path.return_value = mock_file_path
             mock_file_path.suffix = ".bz2"
@@ -69,6 +84,7 @@ class CommunicationNetworkTest(unittest.TestCase):
                 (CommunicationNetwork.from_json(mock_file_path))
             self.assertEqual("Line: 3, Chan_id: 4. Participants column empty.", str(context.exception))
 
+    # Testing if the from_json function works as expected when the value for datetime is incorrect
     def test_from_json_wrong_datetime(self):
         # Mock the file reading and decompression
         mock_file = MagicMock()
@@ -88,7 +104,7 @@ class CommunicationNetworkTest(unittest.TestCase):
         with patch("builtins.open", return_value=mock_file), patch(
             "json.loads"
         ), patch("simulation.model.Path", spec=Path) as mock_path:
-            
+
             # Set up the mock Path object
             mock_path.return_value = mock_file_path
             mock_file_path.suffix = ".bz2"
@@ -100,6 +116,7 @@ class CommunicationNetworkTest(unittest.TestCase):
             self.assertEqual("Line: 2, Chan_id: 3. End column not compatible datetime format.", str(context.exception))
 
 class CommunicationNetworkTestIntegration(unittest.TestCase):
+    # Testing if the from_json function works as expected when the values are compressed and correct
     def test_from_json_compressed_integration(self):
         # Mock the file reading and decompression
         mock_file = MagicMock()
@@ -128,7 +145,7 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
         with patch("builtins.open", return_value=mock_file), patch(
             "json.loads"
         ), patch("simulation.model.Path", spec=Path) as mock_path:
-            
+
             # Set up the mock Path object
             mock_path.return_value = mock_file_path
             mock_file_path.suffix = ".bz2"
@@ -156,6 +173,7 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
             mock_file_path.open.assert_called_once_with("rb")
             mock_file.read.assert_called_once_with()
 
+    # Testing if the from_json function works as expected when the values are uncompressed and correct
     def test_from_json_uncompressed_integration(self):
         # Mock the file reading
         mock_file = MagicMock()
@@ -177,12 +195,12 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
                 "11": {"end": "2020-02-05T12:49:34", "participants": [5, 6]},
                 "12": {"end": "2020-02-05T12:49:35", "participants": [9, 8]}
             }"""
-        
+
         # Patch the required functions and objects with the mocks
         with patch("builtins.open", return_value=mock_file), patch(
             "json.loads"
         ), patch("simulation.model.Path", spec=Path) as mock_path:
-            
+
             # Set up the mock Path object
             mock_path.return_value = mock_file_path
             mock_file_path.suffix = ".json"
