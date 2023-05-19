@@ -39,4 +39,4 @@ jobs:
           git branch
           git add .
           git commit -m "Updated coverage XML"
-          git push origin badges
+          git push 
