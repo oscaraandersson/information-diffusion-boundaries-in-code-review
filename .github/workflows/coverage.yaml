@@ -24,12 +24,7 @@ jobs:
           coverage run -m unittest discover
           coverage report 
           coverage xml
-      - name: Commit changes
-        run: |
-          git add .
-          git commit -m "updated coverage xml"
-          git push origin badges
-          
+
       - name: Configure Git
         run: |
           git config --global user.name "${{ secrets.GITHUB_ACTOR }}"
