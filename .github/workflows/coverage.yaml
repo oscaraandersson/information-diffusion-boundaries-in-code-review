@@ -25,6 +25,7 @@ jobs:
           coverage report 
           coverage xml
           ls
+          echo date >> coverage.xml
           git status
 
       - name: Configure Git
