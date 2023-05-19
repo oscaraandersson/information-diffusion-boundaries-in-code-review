@@ -96,7 +96,7 @@ class CommunicationNetworkTest(unittest.TestCase):
             mock_file.read.assert_called_once_with()
 
     def test_from_json_uncompressed(self):
-        # Mock the file reading and decompression
+        # Mock the file reading
         mock_file = MagicMock()
         mock_file_path = MagicMock(spec=Path)
         mock_file_path.suffix = ".json"
