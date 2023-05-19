@@ -38,6 +38,7 @@ jobs:
 
       - name: Commit changes
         run: |
+          ls
           git add .
           git commit -m "Updated coverage XML"
           git push origin badges
