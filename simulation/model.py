@@ -2,7 +2,6 @@ from datetime import datetime
 from collections import defaultdict
 from pathlib import Path
 import bz2
-import sys
 
 try:
     import orjson as json
@@ -71,14 +70,14 @@ class CommunicationNetwork(TimeVaryingHypergraph):
         timings = {}
         for chan_id, channel in raw_data.items():
             if len(channel['participants']) == 0:
-                sys.exit(f"Line: {line}, Chan_id: {chan_id}. Participants column empty.")
+                raise SystemExit(f"Line: {line}, Chan_id: {chan_id}. Participants column empty.")
 
             hedges[str(chan_id)] = set(channel['participants'])
 
             try:
                 timings[str(chan_id)] = datetime.fromisoformat(channel['end'])
-            except ValueError:
-                sys.exit(f"Line: {line}, Chan_id: {chan_id}. End column not compatible datetime format.")
+            except ValueError as exc:
+                raise SystemExit(f"Line: {line}, Chan_id: {chan_id}. End column not compatible datetime format.") from exc
             line += 1
 
         return cls(hedges, timings, name=name)
