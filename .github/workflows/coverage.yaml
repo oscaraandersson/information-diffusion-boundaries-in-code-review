@@ -4,20 +4,25 @@ on:
   workflow_call
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
+    permissions: write-all
+
     steps:
-      - name: Checkout
-      uses: actions/checkout@v3
-        with:
-          ref: badges
-      - name: Build
-        run: echo ${{ github.sha }} > Release.txt
-      - name: Test
-        run: cat Release.txt
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          files: Release.txt
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          pip install coverage 
+
+      - name: Update coverage badge
+        run: |
+          coverage run -m unittest discover
+          coverage report 
+          coverage xml
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "updated coverage xml"
+          git push origin badges
