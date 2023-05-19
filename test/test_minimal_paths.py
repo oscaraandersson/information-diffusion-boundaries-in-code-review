@@ -10,18 +10,15 @@ def communication_network_fuzzer():
     input_timings: dict = {}
     used: list = []
     for i in range(length):
-        num_verticies = randint(1, 10)
-        while num_verticies != 0:
-            other_vertex = randint(0, length)
-            if other_vertex == i:
-                other_vertex += 1
-            participant: list = ["v" + str(i), "v" + str(other_vertex)]
-            participantreverse: list = ["v" + str(other_vertex), "v" + str(i)]
-            if participant not in used and participantreverse not in used:
-                used.append(participant)
-                used.append(participantreverse)
-                input_network["h" + str(i)] = participant
-            num_verticies = num_verticies - 1
+        other_vertex = randint(0, length)
+        if other_vertex == i:
+            other_vertex += 1
+        participant: list = ["v" + str(i), "v" + str(other_vertex)]
+        participantreverse: list = ["v" + str(other_vertex), "v" + str(i)]
+        if participant not in used and participantreverse not in used:
+            used.append(participant)
+            used.append(participantreverse)
+            input_network["h" + str(i)] = participant
         input_timings["h" + str(i)] = randint(1, 200)
     return input_network, input_timings
 
