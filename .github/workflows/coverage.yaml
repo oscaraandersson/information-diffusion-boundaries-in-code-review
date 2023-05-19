@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "testing" >> test.txt
           cat test.txt
-          cat {{$github.ref }}
+          cat {{$github.ref}}
 
       - name: Release
         uses: softprops/action-gh-release@v1
