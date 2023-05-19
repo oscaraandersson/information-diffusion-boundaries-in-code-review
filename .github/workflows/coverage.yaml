@@ -23,7 +23,6 @@ jobs:
           coverage report 
           coverage xml
           ls
-          date >> coverage.xml
           git status
 
       - name: Configure Git
@@ -35,6 +34,7 @@ jobs:
 
       - name: Commit changes
         run: |
+          date >> coverage.xml
           ls
           git branch
           git add .
