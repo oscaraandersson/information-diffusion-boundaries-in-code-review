@@ -1,0 +1,42 @@
+name: Coverage
+
+
+on:
+  push:
+    branches:    
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          pip install coverage 
+
+      - name: Update coverage badge
+        run: |
+          coverage run -m unittest discover
+          coverage report 
+          coverage xml
+          ls
+          date >> coverage.xml
+          git status
+
+      - name: Configure Git
+        run: |
+          echo ${{ GITHUB.ACTOR }}
+          git config --global user.name "${{ GITHUB.ACTOR }}"
+          git config --global user.email "${{ GITHUB.ACTOR }}@users.noreply.github.com"
+          git config user.name && git config user.email
+
+      - name: Commit changes
+        run: |
+          ls
+          git branch
+          git add .
+          git commit -m "Updated coverage XML"
+          git push origin badges
