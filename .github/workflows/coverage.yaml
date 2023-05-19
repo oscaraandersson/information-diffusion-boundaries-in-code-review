@@ -27,7 +27,7 @@ jobs:
 
       - name: Configure Git
         run: |
-          cat ${{ GITHUB_ACTOR }}
+          cat $GITHUB_ACTOR
       #     git config --global user.name "${{ github_actor }}"
       #     git config --global user.email "${{ github.actor }}@users.noreply.github.com>"
 
