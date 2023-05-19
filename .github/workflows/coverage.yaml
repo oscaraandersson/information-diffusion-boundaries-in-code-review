@@ -27,12 +27,12 @@ jobs:
 
       - name: Configure Git
         run: |
-          cat ${{ GITHUB.ACTOR }}
-      #     git config --global user.name "${{ github_actor }}"
-      #     git config --global user.email "${{ github.actor }}@users.noreply.github.com>"
+          echo ${{ GITHUB.ACTOR }}
+          git config --global user.name "${{ GITHUB.ACTOR }}"
+          git config --global user.email "${{ GITHUB.ACTOR }}@users.noreply.github.com>"
 
-      # - name: Commit changes
-      #   run: |
-      #     git add .
-      #     git commit -m "Updated coverage XML"
-      #     git push origin badges
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "Updated coverage XML"
+          git push origin badges
