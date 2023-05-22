@@ -77,6 +77,7 @@ class CommunicationNetwork(TimeVaryingHypergraph):
 
             try:
                 timings[str(chan_id)] = datetime.fromisoformat(channel['end'])
+                print("worked")
             except ValueError as exc:
                 raise CustomErrorTest(f"Line: {line}, Chan_id: {chan_id}. End column not compatible datetime format.") from exc
             line += 1
