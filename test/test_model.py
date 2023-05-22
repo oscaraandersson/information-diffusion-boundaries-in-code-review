@@ -97,7 +97,7 @@ class CommunicationNetworkTest(unittest.TestCase):
         # Patch the required functions and objects with the mocks
         with patch("json.loads", return_value=data) as mock:
             # Set up the mock Path object
-            result = CommunicationNetwork.from_json("dummy_path")
+            result = Communicationketwork.from_json("data/networks/microsoft.json")
             # Create an object with a call to the method to be tested to make sure we get the error we want
             with self.assertRaises(SystemExit) as context:
                 (CommunicationNetwork.from_json(mock_file_path))
