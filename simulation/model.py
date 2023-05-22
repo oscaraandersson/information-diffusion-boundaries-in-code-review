@@ -11,7 +11,8 @@ except ImportError:
 
 class EntityNotFound(Exception):
     pass
-
+class CustomErrorTest(Exception):
+    pass
 
 class TimeVaryingHypergraph:
     def __init__(self, hedges: dict, timings: dict):
@@ -70,14 +71,14 @@ class CommunicationNetwork(TimeVaryingHypergraph):
         timings = {}
         for chan_id, channel in raw_data.items():
             if len(channel['participants']) == 0:
-                raise SystemExit(f"Line: {line}, Chan_id: {chan_id}. Participants column empty.")
+                raise CustomErrorTest(f"Line: {line}, Chan_id: {chan_id}. Participants column empty.")
 
             hedges[str(chan_id)] = set(channel['participants'])
 
             try:
                 timings[str(chan_id)] = datetime.fromisoformat(channel['end'])
             except ValueError as exc:
-                raise SystemExit(f"Line: {line}, Chan_id: {chan_id}. End column not compatible datetime format.") from exc
+                raise CustomErrorTest(f"Line: {line}, Chan_id: {chan_id}. End column not compatible datetime format.") from exc
             line += 1
 
         return cls(hedges, timings, name=name)
