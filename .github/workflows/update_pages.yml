@@ -1,4 +1,4 @@
-name: Update Documentation
+name: Documentation up to date
 
 on:
   push:
@@ -25,12 +25,16 @@ jobs:
           # Generate the API documentation using sphinx-apidoc
           sphinx-apidoc . -o docs/
 
-      - name: Commit changes
+      - name: Commit files
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: |
-          git config --global user.name "Oscar Andersson"
-          git config --global user.email "oscar.966484@gmail.com"
-          date > docs/version.txt
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add .
-          git commit -m "Update documentation"
-          git push origin main
 
+      - name: Push changes
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          branch: badges

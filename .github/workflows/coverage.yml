@@ -1,0 +1,58 @@
+name: Coverage
+
+
+on:
+  push:
+    branches:    
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          pip install coverage 
+
+      - name: Run coverage
+        run: |
+          coverage run -m unittest discover
+          coverage report -m
+
+      - name: Coverage Badge
+        uses: tj-actions/coverage-badge-py@v2
+
+      - name: move badge
+        run: |
+          mkdir -p badges
+          mv coverage.svg badges/coverage.svg
+
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v14
+        id: verify-changed-files
+        with:
+          files: badges/coverage.svg
+
+      - name: Commit files
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add badges/coverage.svg
+          git commit -m "Updated coverage.svg"
+
+      - name: Push changes
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.github_token }}

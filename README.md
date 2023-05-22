@@ -3,14 +3,12 @@
 [![GitHub](https://img.shields.io/github/license/michaeldorner/information-diffusion-boundaries-in-code-review)](./LICENSE)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ef43d5d9b7c74ec0b211c03d91c448d8)](https://app.codacy.com/gh/michaeldorner/information-diffusion-boundaries-in-code-review/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7898863.svg)](https://doi.org/10.5281/zenodo.7898863)
+[![Documentation up to date](https://github.com/Ivar-Nelson/actions_test/actions/workflows/update_pages.yaml/badge.svg)](https://github.com/Ivar-Nelson/actions_test/actions/workflows/update_pages.yaml)
+[![Coverage](https://github.com/Ivar-Nelson/actions_test/blob/main/badges/coverage.svg)](https://github.com/Ivar-Nelson/actions_test/actions/workflows/coverage.yml)
 
-[![Tests](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/test.yaml/badge.svg?branch=badges)](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/test.yaml)
-
-[![Coverage](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/coverage.yaml/badge.svg?branch=badges)](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/coverage.yaml)
-
-[![.github/workflows/coverage.yaml](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/coverage.yaml/badge.svg?branch=badges)](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/coverage.yaml)
 
 Simulation code for the study "Upper Bound of Information Diffusion in Code Review"
+
 
 ## Introduction
 
