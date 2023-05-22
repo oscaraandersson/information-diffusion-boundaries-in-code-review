@@ -80,7 +80,7 @@ class CommunicationNetworkTest(unittest.TestCase):
             mock_file_path.open.return_value.__enter__.return_value = mock_file
 
             # Create an object with a call to the method to be tested to make sure we get the error we want
-            with self.assertRaises(Exception) as context:
+            with self.assertRaises(SystemExit) as context:
                 (CommunicationNetwork.from_json(mock_file_path))
             self.assertEqual("Line: 3, Chan_id: 4. Participants column empty.", str(context.exception))
 
@@ -111,7 +111,7 @@ class CommunicationNetworkTest(unittest.TestCase):
             mock_file_path.open.return_value.__enter__.return_value = mock_file
 
             # Create an object with a call to the method to be tested to make sure we get the error we want
-            with self.assertRaises(Exception) as context:
+            with self.assertRaises(SystemExit) as context:
                 (CommunicationNetwork.from_json(mock_file_path))
             self.assertEqual("Line: 2, Chan_id: 3. End column not compatible datetime format.", str(context.exception))
 

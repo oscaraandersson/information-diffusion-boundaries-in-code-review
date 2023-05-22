@@ -8,10 +8,7 @@ try:
 except ImportError:
     import json
 
-
 class EntityNotFound(Exception):
-    pass
-class CustomErrorTest(Exception):
     pass
 
 class TimeVaryingHypergraph:
@@ -60,7 +57,6 @@ class CommunicationNetwork(TimeVaryingHypergraph):
 
     @classmethod
     def from_json(cls, file_path, name=None):
-        print("do i even fucking work")
         file_path = Path(file_path)
         with file_path.open('rb') as file:
             if file_path.suffix == '.bz2':
@@ -70,19 +66,16 @@ class CommunicationNetwork(TimeVaryingHypergraph):
         line = 0
         hedges = {}
         timings = {}
-        print("do i enter the for loop?")
         for chan_id, channel in raw_data.items():
-            print("i entered the for loop")
             if len(channel['participants']) == 0:
-                raise CustomErrorTest(f"Line: {line}, Chan_id: {chan_id}. Participants column empty.")
+                raise SystemExit(f"Line: {line}, Chan_id: {chan_id}. Participants column empty.")
 
             hedges[str(chan_id)] = set(channel['participants'])
 
             try:
                 timings[str(chan_id)] = datetime.fromisoformat(channel['end'])
-                print("worked")
             except ValueError as exc:
-                raise CustomErrorTest(f"Line: {line}, Chan_id: {chan_id}. End column not compatible datetime format.") from exc
+                raise SystemExit(f"Line: {line}, Chan_id: {chan_id}. End column not compatible datetime format.") from exc
             line += 1
 
         return cls(hedges, timings, name=name)
