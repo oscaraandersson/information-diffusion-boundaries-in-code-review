@@ -87,29 +87,17 @@ class CommunicationNetworkTest(unittest.TestCase):
     # Testing if the from_json function works as expected when the value for datetime is incorrect
     def test_from_json_wrong_datetime(self):
         # Mock the file reading and decompression
-        mock_file = MagicMock()
-        mock_file_path = MagicMock(spec=Path)
-        mock_file_path.suffix = ".bz2"
-        mock_file_path.open.return_value.__enter__.return_value = mock_file
-        mock_file.read.return_value = bz2.compress(
-            b"""{"1": {"end": "2020-02-05T12:49:39", "participants": [0.1]},
+        data = {"1": {"end": "2020-02-05T12:49:39", "participants": [0.1]},
                     "2": {"end": "2020-02-05T12:49:39", "participants": [2, 3]},
                     "3": {"end": "hejsan", "participants": ["2"]},
                     "4": {"end": "2020-02-05T12:49:59", "participants": [3]},
                     "5.3": {"end": "2020-02-05T12:49:59", "participants": [3, 7]}
-                }"""
-        )
+            }
 
         # Patch the required functions and objects with the mocks
-        with patch("builtins.open", return_value=mock_file), patch(
-            "json.loads"
-        ), patch("simulation.model.Path", spec=Path) as mock_path:
-
+        with patch("json.loads", return_value=data) as mock:
             # Set up the mock Path object
-            mock_path.return_value = mock_file_path
-            mock_file_path.suffix = ".bz2"
-            mock_file_path.open.return_value.__enter__.return_value = mock_file
-
+            result = CommunicationNetwork.from_json("dummy_path")
             # Create an object with a call to the method to be tested to make sure we get the error we want
             with self.assertRaises(SystemExit) as context:
                 (CommunicationNetwork.from_json(mock_file_path))
