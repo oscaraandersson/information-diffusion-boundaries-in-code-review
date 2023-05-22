@@ -60,6 +60,7 @@ class CommunicationNetwork(TimeVaryingHypergraph):
 
     @classmethod
     def from_json(cls, file_path, name=None):
+        print("do i even fucking work")
         file_path = Path(file_path)
         with file_path.open('rb') as file:
             if file_path.suffix == '.bz2':
@@ -69,7 +70,9 @@ class CommunicationNetwork(TimeVaryingHypergraph):
         line = 0
         hedges = {}
         timings = {}
+        print("do i enter the for loop?")
         for chan_id, channel in raw_data.items():
+            print("i entered the for loop")
             if len(channel['participants']) == 0:
                 raise CustomErrorTest(f"Line: {line}, Chan_id: {chan_id}. Participants column empty.")
 
