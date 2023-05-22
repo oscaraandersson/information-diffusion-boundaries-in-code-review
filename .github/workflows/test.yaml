@@ -22,4 +22,5 @@ jobs:
       - name: Run Unittests
         run: |
           pip install -r requirements.txt
-          python3 -m unittest
+          pip install pytest
+          python3 -m pytest
