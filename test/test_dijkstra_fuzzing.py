@@ -1,4 +1,7 @@
 from random import randint
+import sys
+
+sys.path.insert(0, '../')
 
 from simulation.model import CommunicationNetwork
 from simulation.minimal_paths import single_source_dijkstra_vertices, single_source_dijkstra_hyperedges, DistanceType
