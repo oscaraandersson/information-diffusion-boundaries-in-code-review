@@ -5,6 +5,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7898863.svg)](https://doi.org/10.5281/zenodo.7898863)
 [![Documentation up to date](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/update_pages.yml/badge.svg)](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/update_pages.yml)
 [![Coverage](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/blob/main/badges/coverage.svg)](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/coverage.yml)
+[![Tests](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/test.yml/badge.svg)](https://github.com/oscaraandersson/information-diffusion-boundaries-in-code-review/actions/workflows/test.yml)
 
 Simulation code for the study "Upper Bound of Information Diffusion in Code Review"
 
