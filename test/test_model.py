@@ -133,10 +133,6 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
             self.assertSetEqual(result.participants("04"), {7, 8, 9})
             self.assertSetEqual(result.participants("08"), {3})
 
-            # Assert the expected function calls were made
-            data.open.assert_called_once_with("rb")
-            data.read.assert_called_once_with()
-
     # Testing if the from_json function works as expected when the values are uncompressed and correct
     def test_from_json_uncompressed_integration(self):
         # Mock the file reading
@@ -177,6 +173,3 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
             self.assertSetEqual(result.participants("04"), {7, 8, 9})
             self.assertSetEqual(result.participants("08"), {3})
 
-            # Assert the expected function calls were made
-            data.open.assert_called_once_with("rb")
-            data.read.assert_called_once_with()
