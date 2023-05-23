@@ -51,7 +51,10 @@ class TimeVaryingHypergraphTest(unittest.TestCase):
         self.assertTrue("Unknown vertex x1" in str(context.exception))
 
 class CommunicationNetworkTest(unittest.TestCase):
-    
+    def setUp(self):
+        self.dummy_file = "test/testfile.json"
+        with open(self.dummy_file, "w") as f:
+            f.write("")
 
     # Testing if the from_json function works as expected when the list for participants is empty
     def test_from_json_empty_participants(self):
@@ -68,7 +71,7 @@ class CommunicationNetworkTest(unittest.TestCase):
 
             # Create an object with a call to the method to be tested to make sure we get the error we want
             with self.assertRaises(SystemExit) as context:
-                (CommunicationNetwork.from_json("data/networks/microsoft.json"))
+                CommunicationNetwork.from_json(self.dummy_file)
                 self.assertEqual("Line: 3, Chan_id: 4. Participants column empty.", str(context.exception))
 
     # Testing if the from_json function works as expected when the value for datetime is incorrect
@@ -86,7 +89,7 @@ class CommunicationNetworkTest(unittest.TestCase):
 
             # Create an object with a call to the method to be tested to make sure we get the error we want
             with self.assertRaises(SystemExit) as context:
-                (CommunicationNetwork.from_json("data/networks/microsoft.json"))
+                CommunicationNetwork.from_json(self.dummy_file)
                 self.assertEqual("Line: 2, Chan_id: 3. End column not compatible datetime format.", str(context.exception))
 
 class CommunicationNetworkTestIntegration(unittest.TestCase):
@@ -113,7 +116,7 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
         with patch("json.loads", return_value=data)as _:
 
             # Create an object with a call to the method to be tested to make sure the mock is read
-            result = CommunicationNetwork.from_json("data/networks/microsoft.json")
+            result = CommunicationNetwork.from_json("test/testfile.json")
 
             # Assert that the object was created with the default name
             self.assertEqual(result.name, None)
@@ -157,7 +160,7 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
         with patch("json.loads", return_value=data) as _:
 
             # Create an object with a call to the method to be tested to make sure the mock is read
-            result = CommunicationNetwork.from_json("data/networks/microsoft.json")
+            result = CommunicationNetwork.from_json("test/testfile.json")
 
             # Assert that the object was created with the default name
             self.assertEqual(result.name, None)
