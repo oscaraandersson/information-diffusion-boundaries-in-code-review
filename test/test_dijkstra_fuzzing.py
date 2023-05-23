@@ -6,7 +6,10 @@ sys.path.insert(0, '../')
 from simulation.model import CommunicationNetwork
 from simulation.minimal_paths import single_source_dijkstra_vertices, single_source_dijkstra_hyperedges, DistanceType
 
-def communication_network_fuzzer():
+def generate_random_network():
+    """
+    The function genreates a random network according to the specifications and returns 2 dicts.
+    """
     length = randint(10, 200)
     input_network: dict = {}
     input_timings: dict = {}
@@ -45,7 +48,7 @@ def test_foremost_same_output(Cn):
 
 if __name__ == "__main__":
     for run in range(20000):
-        fuzzed_input = communication_network_fuzzer()
+        fuzzed_input = generate_random_network()
         cn = CommunicationNetwork(fuzzed_input[0], fuzzed_input[1])
         shortest = test_shortest_same_output(cn)
         fastest = test_fastest_same_output(cn)
