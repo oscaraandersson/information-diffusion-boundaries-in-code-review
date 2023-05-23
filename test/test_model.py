@@ -1,7 +1,5 @@
 import unittest
-from unittest.mock import MagicMock, patch
-import bz2
-from pathlib import Path
+from unittest.mock import patch
 from simulation.model import CommunicationNetwork, TimeVaryingHypergraph
 
 class TimeVaryingHypergraphTest(unittest.TestCase):
@@ -53,78 +51,49 @@ class TimeVaryingHypergraphTest(unittest.TestCase):
         self.assertTrue("Unknown vertex x1" in str(context.exception))
 
 class CommunicationNetworkTest(unittest.TestCase):
+    
+
     # Testing if the from_json function works as expected when the list for participants is empty
     def test_from_json_empty_participants(self):
         # Mock the file reading and decompression
-        mock_file = MagicMock()
-        mock_file_path = MagicMock(spec=Path)
-        mock_file_path.suffix = ".bz2"
-        mock_file_path.open.return_value.__enter__.return_value = mock_file
-        mock_file.read.return_value = bz2.compress(
-            b"""{"1": {"end": "2020-02-05T12:49:39", "participants": [0.1]},
+        data = {"1": {"end": "2020-02-05T12:49:39", "participants": [0.1]},
                     "2": {"end": "2020-02-05T12:49:39", "participants": [2, 3]},
                     "3": {"end": "2020-02-05T12:49:39", "participants": ["2"]},
                     "4": {"end": "2020-02-05T12:49:59", "participants": []},
                     "5.3": {"end": "2020-02-05T12:49:59", "participants": [3, 7]}
-                }"""
-        )
-
+                }
+                
         # Patch the required functions and objects with the mocks
-        with patch("builtins.open", return_value=mock_file), patch(
-            "json.loads"
-        ), patch("simulation.model.Path", spec=Path) as mock_path:
-
-            # Set up the mock Path object
-            mock_path.return_value = mock_file_path
-            mock_file_path.suffix = ".bz2"
-            mock_file_path.open.return_value.__enter__.return_value = mock_file
+        with patch("json.loads", return_value=data) as _:
 
             # Create an object with a call to the method to be tested to make sure we get the error we want
             with self.assertRaises(SystemExit) as context:
-                (CommunicationNetwork.from_json(mock_file_path))
-            self.assertEqual("Line: 3, Chan_id: 4. Participants column empty.", str(context.exception))
+                (CommunicationNetwork.from_json("data/networks/microsoft.json"))
+                self.assertEqual("Line: 3, Chan_id: 4. Participants column empty.", str(context.exception))
 
     # Testing if the from_json function works as expected when the value for datetime is incorrect
     def test_from_json_wrong_datetime(self):
         # Mock the file reading and decompression
-        mock_file = MagicMock()
-        mock_file_path = MagicMock(spec=Path)
-        mock_file_path.suffix = ".bz2"
-        mock_file_path.open.return_value.__enter__.return_value = mock_file
-        mock_file.read.return_value = bz2.compress(
-            b"""{"1": {"end": "2020-02-05T12:49:39", "participants": [0.1]},
+        data = {"1": {"end": "2020-02-05T12:49:39", "participants": [0.1]},
                     "2": {"end": "2020-02-05T12:49:39", "participants": [2, 3]},
                     "3": {"end": "hejsan", "participants": ["2"]},
                     "4": {"end": "2020-02-05T12:49:59", "participants": [3]},
                     "5.3": {"end": "2020-02-05T12:49:59", "participants": [3, 7]}
-                }"""
-        )
+                }
 
         # Patch the required functions and objects with the mocks
-        with patch("builtins.open", return_value=mock_file), patch(
-            "json.loads"
-        ), patch("simulation.model.Path", spec=Path) as mock_path:
-
-            # Set up the mock Path object
-            mock_path.return_value = mock_file_path
-            mock_file_path.suffix = ".bz2"
-            mock_file_path.open.return_value.__enter__.return_value = mock_file
+        with patch("json.loads", return_value=data) as _:
 
             # Create an object with a call to the method to be tested to make sure we get the error we want
             with self.assertRaises(SystemExit) as context:
-                (CommunicationNetwork.from_json(mock_file_path))
-            self.assertEqual("Line: 2, Chan_id: 3. End column not compatible datetime format.", str(context.exception))
+                (CommunicationNetwork.from_json("data/networks/microsoft.json"))
+                self.assertEqual("Line: 2, Chan_id: 3. End column not compatible datetime format.", str(context.exception))
 
 class CommunicationNetworkTestIntegration(unittest.TestCase):
     # Testing if the from_json function works as expected when the values are compressed and correct
     def test_from_json_compressed_integration(self):
         # Mock the file reading and decompression
-        mock_file = MagicMock()
-        mock_file_path = MagicMock(spec=Path)
-        mock_file_path.suffix = ".bz2"
-        mock_file_path.open.return_value.__enter__.return_value = mock_file
-        mock_file.read.return_value = bz2.compress(
-            b"""{
+        data = {
                 "00": {"end": "2020-02-05T12:49:39", "participants": [0, 1]},
                 "01": {"end": "2020-02-05T12:49:49", "participants": [2, 3]},
                 "02": {"end": "2020-02-05T12:49:59", "participants": [4, 5]},
@@ -138,21 +107,13 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
                 "10": {"end": "2020-02-05T12:49:33", "participants": [0, 9]},
                 "11": {"end": "2020-02-05T12:49:34", "participants": [5, 6]},
                 "12": {"end": "2020-02-05T12:49:35", "participants": [9, 8]}
-            }"""
-        )
+            }
 
         # Patch the required functions and objects with the mocks
-        with patch("builtins.open", return_value=mock_file), patch(
-            "json.loads"
-        ), patch("simulation.model.Path", spec=Path) as mock_path:
-
-            # Set up the mock Path object
-            mock_path.return_value = mock_file_path
-            mock_file_path.suffix = ".bz2"
-            mock_file_path.open.return_value.__enter__.return_value = mock_file
+        with patch("json.loads", return_value=data)as _:
 
             # Create an object with a call to the method to be tested to make sure the mock is read
-            result = CommunicationNetwork.from_json(mock_file_path)
+            result = CommunicationNetwork.from_json("data/networks/microsoft.json")
 
             # Assert that the object was created with the default name
             self.assertEqual(result.name, None)
@@ -170,17 +131,13 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
             self.assertSetEqual(result.participants("08"), {3})
 
             # Assert the expected function calls were made
-            mock_file_path.open.assert_called_once_with("rb")
-            mock_file.read.assert_called_once_with()
+            data.open.assert_called_once_with("rb")
+            data.read.assert_called_once_with()
 
     # Testing if the from_json function works as expected when the values are uncompressed and correct
     def test_from_json_uncompressed_integration(self):
         # Mock the file reading
-        mock_file = MagicMock()
-        mock_file_path = MagicMock(spec=Path)
-        mock_file_path.suffix = ".json"
-        mock_file_path.open.return_value.__enter__.return_value = mock_file
-        mock_file.read.return_value = """{
+        data = {
                 "00": {"end": "2020-02-05T12:49:39", "participants": [0, 1]},
                 "01": {"end": "2020-02-05T12:49:49", "participants": [2, 3]},
                 "02": {"end": "2020-02-05T12:49:59", "participants": [4, 5]},
@@ -194,20 +151,13 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
                 "10": {"end": "2020-02-05T12:49:33", "participants": [0, 9]},
                 "11": {"end": "2020-02-05T12:49:34", "participants": [5, 6]},
                 "12": {"end": "2020-02-05T12:49:35", "participants": [9, 8]}
-            }"""
+            }
 
         # Patch the required functions and objects with the mocks
-        with patch("builtins.open", return_value=mock_file), patch(
-            "json.loads"
-        ), patch("simulation.model.Path", spec=Path) as mock_path:
-
-            # Set up the mock Path object
-            mock_path.return_value = mock_file_path
-            mock_file_path.suffix = ".json"
-            mock_file_path.open.return_value.__enter__.return_value = mock_file
+        with patch("json.loads", return_value=data) as _:
 
             # Create an object with a call to the method to be tested to make sure the mock is read
-            result = CommunicationNetwork.from_json(mock_file_path)
+            result = CommunicationNetwork.from_json("data/networks/microsoft.json")
 
             # Assert that the object was created with the default name
             self.assertEqual(result.name, None)
@@ -225,5 +175,5 @@ class CommunicationNetworkTestIntegration(unittest.TestCase):
             self.assertSetEqual(result.participants("08"), {3})
 
             # Assert the expected function calls were made
-            mock_file_path.open.assert_called_once_with("rb")
-            mock_file.read.assert_called_once_with()
+            data.open.assert_called_once_with("rb")
+            data.read.assert_called_once_with()
