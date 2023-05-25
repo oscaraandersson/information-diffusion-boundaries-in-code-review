@@ -12,7 +12,14 @@ class EntityNotFound(Exception):
     pass
 
 class TimeVaryingHypergraph:
-    def __init__(self, hedges: dict, timings: dict):
+   def __init__(self, hedges: dict, timings: dict):
+        """ 
+        Initializes a TimeVaryingHypergraph instance.
+
+        Args:
+        hedges (dict): A dictionary mapping hyperedges to their associated vertices.
+        timings (dict): A dictionary mapping hyperedges to their timings.
+        """
         self._vertices = defaultdict(list)
         for hedge, _vertices in hedges.items():
             for vertex in _vertices:
