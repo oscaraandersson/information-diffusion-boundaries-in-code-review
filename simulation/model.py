@@ -8,10 +8,8 @@ try:
 except ImportError:
     import json
 
-
 class EntityNotFound(Exception):
     pass
-
 
 class TimeVaryingHypergraph:
     def __init__(self, hedges: dict, timings: dict):
@@ -26,7 +24,9 @@ class TimeVaryingHypergraph:
     def timings(self, entity=None):
         if entity is None:
             return self._timings
-        return self._timings[entity]
+        if entity in self._timings:
+            return self._timings[entity]
+        raise EntityNotFound(f'No hyperedge matches the timing {entity}')
 
     def vertices(self, hedge=None):
         if hedge is None:
@@ -63,7 +63,19 @@ class CommunicationNetwork(TimeVaryingHypergraph):
                 raw_data = json.loads(bz2.decompress(file.read()))
             else:
                 raw_data = json.loads(file.read())
-            hedges = {str(chan_id): set(channel['participants']) for chan_id, channel in raw_data.items()}
-            timings = {str(chan_id): datetime.fromisoformat(channel['end']) for chan_id, channel in raw_data.items()}
+        line = 0
+        hedges = {}
+        timings = {}
+        for chan_id, channel in raw_data.items():
+            if len(channel['participants']) == 0:
+                raise SystemExit(f"Line: {line}, Chan_id: {chan_id}. Participants column empty.")
+
+            hedges[str(chan_id)] = set(channel['participants'])
+
+            try:
+                timings[str(chan_id)] = datetime.fromisoformat(channel['end'])
+            except ValueError as exc:
+                raise SystemExit(f"Line: {line}, Chan_id: {chan_id}. End column not compatible datetime format.") from exc
+            line += 1
 
         return cls(hedges, timings, name=name)
