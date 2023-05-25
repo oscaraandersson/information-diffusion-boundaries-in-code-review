@@ -9,7 +9,7 @@
 
 Simulation code for the study "Upper Bound of Information Diffusion in Code Review"
 
-Check out the ![documentation](https://oscaraandersson.github.io/information-diffusion-boundaries-in-code-review/html/index.html).
+Check out the [documentation](https://oscaraandersson.github.io/information-diffusion-boundaries-in-code-review/html/index.html).
 
 ## Introduction
 
