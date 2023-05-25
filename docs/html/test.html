@@ -11,6 +11,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
@@ -46,12 +48,14 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">test package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-test.test_minimal_paths">test.test_minimal_paths module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#test.test_minimal_paths.MinimalPath"><code class="docutils literal notranslate"><span class="pre">MinimalPath</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.test_minimal_paths.TestMinimalPath"><code class="docutils literal notranslate"><span class="pre">TestMinimalPath</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.test_minimal_paths.generate_random_network"><code class="docutils literal notranslate"><span class="pre">generate_random_network()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-test.test_model">test.test_model module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#test.test_model.ModelDataTest"><code class="docutils literal notranslate"><span class="pre">ModelDataTest</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#test.test_model.ModelTest"><code class="docutils literal notranslate"><span class="pre">ModelTest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.test_model.TestCommunicationNetwork"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetwork</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.test_model.TestCommunicationNetworkIntegration"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetworkIntegration</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test.test_model.TestTimeVaryingHypergraph"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-test">Module contents</a></li>
@@ -94,68 +98,191 @@
 <section id="module-test.test_minimal_paths">
 <span id="test-test-minimal-paths-module"></span><h2>test.test_minimal_paths module<a class="headerlink" href="#module-test.test_minimal_paths" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="test.test_minimal_paths.MinimalPath">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test.test_minimal_paths.</span></span><span class="sig-name descname"><span class="pre">MinimalPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.MinimalPath" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="test.test_minimal_paths.TestMinimalPath">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test.test_minimal_paths.</span></span><span class="sig-name descname"><span class="pre">TestMinimalPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.TestMinimalPath" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="test.test_minimal_paths.MinimalPath.cn">
-<span class="sig-name descname"><span class="pre">cn</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;simulation.model.CommunicationNetwork</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#test.test_minimal_paths.MinimalPath.cn" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<p>A test case for the minimal path file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_minimal_paths.TestMinimalPath.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.TestMinimalPath.setUp" title="Permalink to this definition"></a></dt>
+<dd><p>Creating a communication network with the random funcion.
+Creating a communication network with manually selected values.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="test.test_minimal_paths.MinimalPath.test_1">
-<span class="sig-name descname"><span class="pre">test_1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.MinimalPath.test_1" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="test.test_minimal_paths.TestMinimalPath.test_correct_fastest_output">
+<span class="sig-name descname"><span class="pre">test_correct_fastest_output</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.TestMinimalPath.test_correct_fastest_output" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the fastest version of the djikstra vertices algorithm is correct.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="test.test_minimal_paths.MinimalPath.test_2">
-<span class="sig-name descname"><span class="pre">test_2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.MinimalPath.test_2" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="test.test_minimal_paths.TestMinimalPath.test_correct_foremost_output">
+<span class="sig-name descname"><span class="pre">test_correct_foremost_output</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.TestMinimalPath.test_correct_foremost_output" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the foremost version of the djikstra vertices algorithm is correct.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="test.test_minimal_paths.MinimalPath.test_3">
-<span class="sig-name descname"><span class="pre">test_3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.MinimalPath.test_3" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="test.test_minimal_paths.TestMinimalPath.test_correct_shortest_output">
+<span class="sig-name descname"><span class="pre">test_correct_shortest_output</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.TestMinimalPath.test_correct_shortest_output" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the shortest version of the djikstra vertices algorithm is correct.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="test.test_minimal_paths.MinimalPath.test_4">
-<span class="sig-name descname"><span class="pre">test_4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.MinimalPath.test_4" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="test.test_minimal_paths.TestMinimalPath.test_fastest_same_output">
+<span class="sig-name descname"><span class="pre">test_fastest_same_output</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.TestMinimalPath.test_fastest_same_output" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the fastest version of the djikstra algorithms are the same.</p>
+</dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_minimal_paths.TestMinimalPath.test_foremost_same_output">
+<span class="sig-name descname"><span class="pre">test_foremost_same_output</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.TestMinimalPath.test_foremost_same_output" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the foremost version of the djikstra algorithms are the same.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_minimal_paths.TestMinimalPath.test_shortest_same_output">
+<span class="sig-name descname"><span class="pre">test_shortest_same_output</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.TestMinimalPath.test_shortest_same_output" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the shortest version of the djikstra algorithms are the same.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="test.test_minimal_paths.generate_random_network">
+<span class="sig-prename descclassname"><span class="pre">test.test_minimal_paths.</span></span><span class="sig-name descname"><span class="pre">generate_random_network</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_minimal_paths.generate_random_network" title="Permalink to this definition"></a></dt>
+<dd><p>The function genreates a random network according to the specifications and returns 2 dicts.</p>
 </dd></dl>
 
 </section>
 <section id="module-test.test_model">
 <span id="test-test-model-module"></span><h2>test.test_model module<a class="headerlink" href="#module-test.test_model" title="Permalink to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="test.test_model.ModelDataTest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test.test_model.</span></span><span class="sig-name descname"><span class="pre">ModelDataTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.ModelDataTest" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="test.test_model.TestCommunicationNetwork">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test.test_model.</span></span><span class="sig-name descname"><span class="pre">TestCommunicationNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestCommunicationNetwork" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>A test case for the CommunicationNetwork class.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="test.test_model.ModelDataTest.test_model_with_data">
-<span class="sig-name descname"><span class="pre">test_model_with_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.ModelDataTest.test_model_with_data" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="test.test_model.TestCommunicationNetwork.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestCommunicationNetwork.setUp" title="Permalink to this definition"></a></dt>
+<dd><p>Differentiating between normal json and orjson depending on which is installed and creating a dummy file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestCommunicationNetwork.tearDown">
+<span class="sig-name descname"><span class="pre">tearDown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestCommunicationNetwork.tearDown" title="Permalink to this definition"></a></dt>
+<dd><p>Removing the file created in the setup</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestCommunicationNetwork.test_from_json_empty_participants">
+<span class="sig-name descname"><span class="pre">test_from_json_empty_participants</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestCommunicationNetwork.test_from_json_empty_participants" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the from_json function works as expected when the list for participants is empty</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestCommunicationNetwork.test_from_json_wrong_datetime">
+<span class="sig-name descname"><span class="pre">test_from_json_wrong_datetime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestCommunicationNetwork.test_from_json_wrong_datetime" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the from_json function works as expected when the value for datetime is incorrect</p>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="test.test_model.ModelTest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test.test_model.</span></span><span class="sig-name descname"><span class="pre">ModelTest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.ModelTest" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="test.test_model.TestCommunicationNetworkIntegration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test.test_model.</span></span><span class="sig-name descname"><span class="pre">TestCommunicationNetworkIntegration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestCommunicationNetworkIntegration" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>A test case for the CommunicationNetwork class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestCommunicationNetworkIntegration.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestCommunicationNetworkIntegration.setUp" title="Permalink to this definition"></a></dt>
+<dd><p>Differentiating between normal json and orjson depending on which is installed.
+Creating a compressed dummy file and an uncompressed dummy file.
+Defining the data used for the tests</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestCommunicationNetworkIntegration.tearDown">
+<span class="sig-name descname"><span class="pre">tearDown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestCommunicationNetworkIntegration.tearDown" title="Permalink to this definition"></a></dt>
+<dd><p>Removing both files created in the setup</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestCommunicationNetworkIntegration.test_from_json_compressed_integration">
+<span class="sig-name descname"><span class="pre">test_from_json_compressed_integration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestCommunicationNetworkIntegration.test_from_json_compressed_integration" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the from_json function works as expected when the values are compressed and correct</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestCommunicationNetworkIntegration.test_from_json_uncompressed_integration">
+<span class="sig-name descname"><span class="pre">test_from_json_uncompressed_integration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestCommunicationNetworkIntegration.test_from_json_uncompressed_integration" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the from_json function works as expected when the values are uncompressed and correct</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test.test_model.</span></span><span class="sig-name descname"><span class="pre">TestTimeVaryingHypergraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<p>A test case for the TimeVaryingHypergraph class.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="test.test_model.ModelTest.cn">
-<span class="sig-name descname"><span class="pre">cn</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;simulation.model.CommunicationNetwork</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#test.test_model.ModelTest.cn" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph.graph">
+<span class="sig-name descname"><span class="pre">graph</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;simulation.model.TimeVaryingHypergraph</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph.graph" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="test.test_model.ModelTest.test_hyperedges">
-<span class="sig-name descname"><span class="pre">test_hyperedges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.ModelTest.test_hyperedges" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph.test_hyperedges_correct_parameter">
+<span class="sig-name descname"><span class="pre">test_hyperedges_correct_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph.test_hyperedges_correct_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the hyperedges function works as expected when given correct input</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="test.test_model.ModelTest.test_vertices">
-<span class="sig-name descname"><span class="pre">test_vertices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.ModelTest.test_vertices" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph.test_hyperedges_incorrect_parameter">
+<span class="sig-name descname"><span class="pre">test_hyperedges_incorrect_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph.test_hyperedges_incorrect_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the hyperedges function works as expected when given incorrect input</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph.test_hyperedges_no_parameter">
+<span class="sig-name descname"><span class="pre">test_hyperedges_no_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph.test_hyperedges_no_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the hyperedges function works as expected when given no input</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph.test_timings_correct_parameter">
+<span class="sig-name descname"><span class="pre">test_timings_correct_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph.test_timings_correct_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the timings function works as expected when given correct input</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph.test_timings_incorrect_paramter">
+<span class="sig-name descname"><span class="pre">test_timings_incorrect_paramter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph.test_timings_incorrect_paramter" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the timings function works as expected when given incorrect input</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph.test_timings_no_parameter">
+<span class="sig-name descname"><span class="pre">test_timings_no_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph.test_timings_no_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the timings function works as expected when given no input</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph.test_vertices_correct_parameter">
+<span class="sig-name descname"><span class="pre">test_vertices_correct_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph.test_vertices_correct_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the vertices function works as expected when given correct input</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph.test_vertices_incorrect_parameter">
+<span class="sig-name descname"><span class="pre">test_vertices_incorrect_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph.test_vertices_incorrect_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the vertices function works as expected when given incorrect input</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test.test_model.TestTimeVaryingHypergraph.test_vertices_no_parameter">
+<span class="sig-name descname"><span class="pre">test_vertices_no_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test.test_model.TestTimeVaryingHypergraph.test_vertices_no_parameter" title="Permalink to this definition"></a></dt>
+<dd><p>Testing if the vertices function works as expected when given no input</p>
+</dd></dl>
 
 </dd></dl>
 

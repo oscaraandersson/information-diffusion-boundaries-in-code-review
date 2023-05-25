@@ -11,6 +11,8 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
@@ -106,35 +108,52 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="simulation.html#module-simulation.run">simulation.run module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="simulation.html#simulation.run.run_simulation"><code class="docutils literal notranslate"><span class="pre">run_simulation()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html#simulation-run-module">simulation.run module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="simulation.html#module-simulation">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="test.html">test package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="test.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test.html#module-test.test_minimal_paths">test.test_minimal_paths module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="test.html#test.test_minimal_paths.MinimalPath"><code class="docutils literal notranslate"><span class="pre">MinimalPath</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.MinimalPath.cn"><code class="docutils literal notranslate"><span class="pre">MinimalPath.cn</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.MinimalPath.test_1"><code class="docutils literal notranslate"><span class="pre">MinimalPath.test_1()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.MinimalPath.test_2"><code class="docutils literal notranslate"><span class="pre">MinimalPath.test_2()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.MinimalPath.test_3"><code class="docutils literal notranslate"><span class="pre">MinimalPath.test_3()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.MinimalPath.test_4"><code class="docutils literal notranslate"><span class="pre">MinimalPath.test_4()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#test.test_minimal_paths.TestMinimalPath"><code class="docutils literal notranslate"><span class="pre">TestMinimalPath</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.TestMinimalPath.setUp"><code class="docutils literal notranslate"><span class="pre">TestMinimalPath.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.TestMinimalPath.test_correct_fastest_output"><code class="docutils literal notranslate"><span class="pre">TestMinimalPath.test_correct_fastest_output()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.TestMinimalPath.test_correct_foremost_output"><code class="docutils literal notranslate"><span class="pre">TestMinimalPath.test_correct_foremost_output()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.TestMinimalPath.test_correct_shortest_output"><code class="docutils literal notranslate"><span class="pre">TestMinimalPath.test_correct_shortest_output()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.TestMinimalPath.test_fastest_same_output"><code class="docutils literal notranslate"><span class="pre">TestMinimalPath.test_fastest_same_output()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.TestMinimalPath.test_foremost_same_output"><code class="docutils literal notranslate"><span class="pre">TestMinimalPath.test_foremost_same_output()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_minimal_paths.TestMinimalPath.test_shortest_same_output"><code class="docutils literal notranslate"><span class="pre">TestMinimalPath.test_shortest_same_output()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#test.test_minimal_paths.generate_random_network"><code class="docutils literal notranslate"><span class="pre">generate_random_network()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="test.html#module-test.test_model">test.test_model module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="test.html#test.test_model.ModelDataTest"><code class="docutils literal notranslate"><span class="pre">ModelDataTest</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.ModelDataTest.test_model_with_data"><code class="docutils literal notranslate"><span class="pre">ModelDataTest.test_model_with_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#test.test_model.TestCommunicationNetwork"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetwork</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestCommunicationNetwork.setUp"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetwork.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestCommunicationNetwork.tearDown"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetwork.tearDown()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestCommunicationNetwork.test_from_json_empty_participants"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetwork.test_from_json_empty_participants()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestCommunicationNetwork.test_from_json_wrong_datetime"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetwork.test_from_json_wrong_datetime()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="test.html#test.test_model.ModelTest"><code class="docutils literal notranslate"><span class="pre">ModelTest</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.ModelTest.cn"><code class="docutils literal notranslate"><span class="pre">ModelTest.cn</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.ModelTest.test_hyperedges"><code class="docutils literal notranslate"><span class="pre">ModelTest.test_hyperedges()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.ModelTest.test_vertices"><code class="docutils literal notranslate"><span class="pre">ModelTest.test_vertices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#test.test_model.TestCommunicationNetworkIntegration"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetworkIntegration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestCommunicationNetworkIntegration.setUp"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetworkIntegration.setUp()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestCommunicationNetworkIntegration.tearDown"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetworkIntegration.tearDown()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestCommunicationNetworkIntegration.test_from_json_compressed_integration"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetworkIntegration.test_from_json_compressed_integration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestCommunicationNetworkIntegration.test_from_json_uncompressed_integration"><code class="docutils literal notranslate"><span class="pre">TestCommunicationNetworkIntegration.test_from_json_uncompressed_integration()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph.graph"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph.graph</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph.test_hyperedges_correct_parameter"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph.test_hyperedges_correct_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph.test_hyperedges_incorrect_parameter"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph.test_hyperedges_incorrect_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph.test_hyperedges_no_parameter"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph.test_hyperedges_no_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph.test_timings_correct_parameter"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph.test_timings_correct_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph.test_timings_incorrect_paramter"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph.test_timings_incorrect_paramter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph.test_timings_no_parameter"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph.test_timings_no_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph.test_vertices_correct_parameter"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph.test_vertices_correct_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph.test_vertices_incorrect_parameter"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph.test_vertices_incorrect_parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.html#test.test_model.TestTimeVaryingHypergraph.test_vertices_no_parameter"><code class="docutils literal notranslate"><span class="pre">TestTimeVaryingHypergraph.test_vertices_no_parameter()</span></code></a></li>
 </ul>
 </li>
 </ul>
