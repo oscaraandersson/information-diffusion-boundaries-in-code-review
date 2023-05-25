@@ -24,6 +24,7 @@ jobs:
         run: |
           # Generate the API documentation using sphinx-apidoc
           sphinx-apidoc . -o docs/
+          make -C docs html
 
       - name: Commit files
         if: steps.verify-changed-files.outputs.files_changed == 'true'
