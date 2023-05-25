@@ -32,6 +32,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git pull
           git add .
+          git commit -m "updated documentation"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
