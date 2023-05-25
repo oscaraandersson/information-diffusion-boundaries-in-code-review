@@ -12,7 +12,7 @@ class EntityNotFound(Exception):
     pass
 
 class TimeVaryingHypergraph:
-   def __init__(self, hedges: dict, timings: dict):
+    def __init__(self, hedges: dict, timings: dict):
         """ 
         Initializes a TimeVaryingHypergraph instance.
 
